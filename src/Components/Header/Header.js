@@ -6,8 +6,8 @@ const Header = () => {
     return (
         <>
         <div className={HeaderCss.mainHeader}>
-            <div className={HeaderCss.img_section}>
-                <img src={Logo} alt="logo" />
+            <div>
+                <img className={HeaderCss.img_section} src={Logo} alt="logo" />
             </div>
         </div>
         </>

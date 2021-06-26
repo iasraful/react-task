@@ -1,7 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const Card = ({ country }) => {
-    const {name, population, region, capital, flag, numericCode} = country
+    const {name, region, capital, flag} = country;
+    const history = useHistory();
+    const showDetails = name =>{
+        const url = `details/${name}`;
+        history.push(url);
+
+    }
   return (
     <div className="col-md-6 mb-2 mt-5">
         <div className="card p-2" >
@@ -11,9 +18,8 @@ const Card = ({ country }) => {
                 <h6 className="card-text">
                     Capital: {capital}
                 </h6>
-                <a href="/" className="btn btn-primary">
-                Details
-                </a>
+                <p className="card-text">Region: {region}</p>
+                <button onClick={()=> showDetails(name)} href="/" className="btn btn-primary">Detalis</button>
             </div>
         </div>
     </div>
