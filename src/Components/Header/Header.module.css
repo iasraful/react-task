@@ -1,0 +1,10 @@
+.mainHeader{
+    height: 60px;
+    width: 100%;
+    background:linear-gradient(to right, #0a50aa, #1888d5);
+}
+
+.img_section{
+padding: 10px;
+cursor: pointer;
+}
