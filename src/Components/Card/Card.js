@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-const Card = ({ country }) => {
-    const {name, region, capital, flag} = country;
+const Card = ({ countrys }) => {
+    const {name, region, capital, flag} = countrys;
     const history = useHistory();
     const showDetails = name =>{
         const url = `details/${name}`;

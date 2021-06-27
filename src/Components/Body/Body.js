@@ -1,8 +1,27 @@
 import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import Card from "../Card/Card";
+import PaginateBodyCss from './Body.module.css'
 
 const Body = () => {
   const [countrys, setCountrys] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const countryPerPage = 10;
+  const visitedPage = pageNumber * countryPerPage;
+
+  // For ReactPaginate >> bellow
+  const pageCount = Math.ceil(countrys.length / countryPerPage);
+  const changePages = ({selected}) => {
+    setPageNumber(selected)
+  }
+
+  const displayCountry = countrys.slice(visitedPage, visitedPage + countryPerPage)
+  .map(countrys => {
+      return(
+        <Card countrys = {countrys} key ={countrys.numericCode}/>)
+      
+  })
 
   useEffect(() => {
     const url = `https://restcountries.eu/rest/v2/all`;
@@ -40,10 +59,23 @@ const Body = () => {
                     <div className="container">
                         <div className="row">
                             {
-                                countrys.map(country => <Card country = {country}  key ={country.numericCode}/>)
+                               displayCountry
                             }
                         </div>
                     </div>
+
+
+                    <ReactPaginate
+                    previousLabel= {"Previous"}
+                    nextLabel= {"Next"}
+                    pageCount={pageCount}
+                    onPageChange= {changePages}
+                    containerClassName= {PaginateBodyCss.paginationBtn}
+                    previousClassName= {PaginateBodyCss.previousBtn}
+                    nextClassName= {PaginateBodyCss.nextBtn}
+                    disabledClassName= {PaginateBodyCss.paginationDisabled}
+                    activeClassName= {PaginateBodyCss.paginationActive}
+                    />
 
 </div>
      
