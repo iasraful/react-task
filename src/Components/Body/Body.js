@@ -5,12 +5,21 @@ import PaginateBodyCss from './Body.module.css'
 
 const Body = () => {
   const [countrys, setCountrys] = useState([]);
+
+  // Search Implement
+   
+  const [search, setSearch] = useState('');
+  const handelSearch = event =>{
+      setSearch(event.target.value);
+  }
+
+
+  // For React Pagination >> bellow
   const [pageNumber, setPageNumber] = useState(0);
 
   const countryPerPage = 10;
   const visitedPage = pageNumber * countryPerPage;
 
-  // For ReactPaginate >> bellow
   const pageCount = Math.ceil(countrys.length / countryPerPage);
   const changePages = ({selected}) => {
     setPageNumber(selected)
@@ -24,12 +33,13 @@ const Body = () => {
   })
 
   useEffect(() => {
-    const url = `https://restcountries.eu/rest/v2/all`;
+    const url = `https://restcountries.eu/rest/v2/name/${search}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setCountrys(data));
-  }, []);
+  }, [search]);
   console.log(countrys);
+  console.log(search);
 
   return (
     <div>
@@ -42,7 +52,7 @@ const Body = () => {
                                     </div>
                                 
                                     <div className="col">
-                                        <input className="form-control form-control-lg form-control-borderless" type="search" placeholder="Search Your Country..."/>
+                                        <input onChange={handelSearch} className="form-control form-control-lg form-control-borderless" type="search" placeholder="Search Your Country..."/>
                                     </div>
                                     
                                     <div className="col-auto">

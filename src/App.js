@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Header />
       <Switch>
-        <Route exact path="/">
+        <Route path="/">
           <Body />
         </Route>
         <Route path="/details/:name">
