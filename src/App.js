@@ -4,6 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Components/Header/Header";
 import CardDetails from "./Components/CardDetalis/CardDetails";
 import Body from "./Components/Body/Body";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <CardDetails />
         </Route>
       </Switch>
+      <Footer/>
     </Router>
   );
 }
